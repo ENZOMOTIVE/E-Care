@@ -5,6 +5,11 @@ import { loadAccount } from "../../store/interactions";
 import { useDispatch, useSelector } from "react-redux";
 import Blockies from "react-blockies";
 import config from "../../config.json";
+
+
+
+
+
 const Navbar = () => {
   const dispatch = useDispatch();
   const provider = useSelector((state) => state.provider.connection);
@@ -24,12 +29,19 @@ const Navbar = () => {
       ],
     });
   };
+
+
+
   return (
     <div className="Navbar">
+
+       
       <div className="nav__name">
         <img src={healthReport} alt="" width="40" height="40" />
-        <h2>Subham Medical Record </h2>
+        <h2>E-Care </h2>
       </div>
+
+       
       <div className="nav__networkSelector">
         <select
           name="network"
@@ -45,6 +57,9 @@ const Navbar = () => {
           <option value="0x13881">Mumbai</option>
         </select>
       </div>
+
+
+     
       <div className="nav__balance">
         {balance ? (
           <p className="nav__myBalance">
@@ -57,6 +72,8 @@ const Navbar = () => {
             0ETH
           </p>
         )}
+
+
         {account ? (
           <a className="nav__myAccount" href="#">
             {account.slice(0, 5) + "...." + account.slice(38, 42)}
@@ -76,6 +93,10 @@ const Navbar = () => {
           </button>
         )}
       </div>
+
+
+
+
     </div>
   );
 };
