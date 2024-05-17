@@ -62,17 +62,22 @@ const Navbar = () => {
         </select>
       </div>
 
+     
       <div className="nav__balance">
         {balance ? (
-          <p className="nav__myBalance">
-            <small>My Balance: </small>
-            {Number(balance).toFixed(4)}
-          </p>
+          <div className="nav__myBalance-container">
+            <p>
+              <small>My Balance: </small>
+              {Number(balance).toFixed(4)}
+            </p>
+          </div>
         ) : (
-          <p className="nav__myBalance">
-            <small>My Balance: </small>
-            0ETH
-          </p>
+          <div className="nav__myBalance-container">
+            <p>
+              <small>My Balance: </small>
+              0ETH
+            </p>
+          </div>
         )}
 
         {account ? (

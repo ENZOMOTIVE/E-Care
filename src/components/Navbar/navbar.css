@@ -55,9 +55,7 @@
     color: white;
   }
   
-  .nav__myBalance {
-    color: white;
-  }
+ 
   
   .nav__myAccount {
     color: white;
@@ -96,5 +94,32 @@
   
   .opt__button:hover {
     background-color: #444; 
+    color: white;
+  }
+
+  /* Updated CSS for My Balance */
+.nav__myBalance-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex: 1;
+    padding: 0.5rem 1.5rem;
+    margin: 2rem;
+    border: 2px solid white;
+    border-radius: 0.4em;
+    background-color: hsl(178.41deg 73.72% 30.76% / 87%);
+    color: white;
+    transition: background-color 0.3s;
+  }
+  
+  .nav__myBalance-container:hover {
+    background-color: #333;
+  }
+  
+  .nav__myBalance-container p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
     color: white;
   }
