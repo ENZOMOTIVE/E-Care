@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./form.css";
 import { submitRecord } from "../../store/interactions";
 import { useDispatch, useSelector } from "react-redux";
+
+
 const Form = () => {
   const provider = useSelector((state) => state.provider.connection);
   const medical = useSelector((state) => state.medical.contract);
@@ -51,7 +53,7 @@ const Form = () => {
           value={name === 0 ? "" : name}
           onChange={(e) => setName(e.target.value)}
           required
-          placeholder="Aman Dhattarwal"
+          placeholder="Enter your name"
         />
 
         <label htmlFor="age">Age:</label>
@@ -60,7 +62,7 @@ const Form = () => {
           id="age"
           name="age"
           required
-          placeholder="29"
+          placeholder="Enter Age"
           value={age === 0 ? "" : age}
           onChange={(e) => setAge(e.target.value)}
         />
