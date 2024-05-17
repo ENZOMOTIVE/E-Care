@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 import healthReport from "../../assets/health-report.png";
 import { loadAccount } from "../../store/interactions";
@@ -6,19 +7,17 @@ import { useDispatch, useSelector } from "react-redux";
 import Blockies from "react-blockies";
 import config from "../../config.json";
 
-
-
-
-
 const Navbar = () => {
   const dispatch = useDispatch();
   const provider = useSelector((state) => state.provider.connection);
   const account = useSelector((state) => state.provider.account);
   const balance = useSelector((state) => state.provider.balance);
   const chainId = useSelector((state) => state.provider.chainId);
+
   const connectHandler = async (e) => {
     await loadAccount(provider, dispatch);
   };
+
   const networkHandler = async (e) => {
     await window.ethereum.request({
       method: "wallet_switchEthereumChain",
@@ -30,18 +29,23 @@ const Navbar = () => {
     });
   };
 
-
-
   return (
     <div className="Navbar">
-
-       
       <div className="nav__name">
         <img src={healthReport} alt="" width="40" height="40" />
-        <h2>E-Care </h2>
+        <h2>E-Care</h2>
       </div>
 
-       
+      {/* Option Links as Buttons */}
+      <div className="Option">
+        <Link to="/" className="opt__button">
+          Form
+        </Link>
+        <Link to="/data" className="opt__button">
+          Data
+        </Link>
+      </div>
+
       <div className="nav__networkSelector">
         <select
           name="network"
@@ -58,21 +62,18 @@ const Navbar = () => {
         </select>
       </div>
 
-
-     
       <div className="nav__balance">
         {balance ? (
           <p className="nav__myBalance">
-            <small>My Balance : </small>
+            <small>My Balance: </small>
             {Number(balance).toFixed(4)}
           </p>
         ) : (
           <p className="nav__myBalance">
-            <small>My Balance : </small>
+            <small>My Balance: </small>
             0ETH
           </p>
         )}
-
 
         {account ? (
           <a className="nav__myAccount" href="#">
@@ -93,10 +94,6 @@ const Navbar = () => {
           </button>
         )}
       </div>
-
-
-
-
     </div>
   );
 };
