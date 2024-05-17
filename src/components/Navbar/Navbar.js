@@ -67,7 +67,7 @@ const Navbar = () => {
         {balance ? (
           <div className="nav__myBalance-container">
             <p>
-              <small>My Balance: </small>
+              <small>Balance: </small>
               {Number(balance).toFixed(4)}
             </p>
           </div>
@@ -79,20 +79,21 @@ const Navbar = () => {
             </p>
           </div>
         )}
-
-        {account ? (
-          <a className="nav__myAccount" href="#">
-            {account.slice(0, 5) + "...." + account.slice(38, 42)}
-            <Blockies
-              seed={account}
-              size={10}
-              scale={3}
-              color="#2187D0"
-              bgColor="#F1F2F9"
-              spotColor="#767F92"
-              className="identicon"
-            />
-          </a>
+{account ? (
+          <div className="nav__myAccount-container">
+            <a className="nav__myAccount" href="#">
+              {account.slice(0, 5) + "...." + account.slice(38, 42)}
+              <Blockies
+                seed={account}
+                size={10}
+                scale={3}
+                color="#2187D0"
+                bgColor="#F1F2F9"
+                spotColor="#767F92"
+                className="identicon"
+              />
+            </a>
+          </div>
         ) : (
           <button className="nav__balance-box" onClick={connectHandler}>
             Connect

@@ -57,13 +57,34 @@
   
  
   
-  .nav__myAccount {
-    color: white;
+  .nav__myAccount-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 1;
+    padding: 0.5rem 1.5rem;
+    margin: 2rem;
+    border: 2px solid white;
+    border-radius: 0.4em;
+    background-color: hsl(178.41deg 73.72% 30.76% / 87%);
+    color: white;
+    transition: background-color 0.3s;
   }
   
+  .nav__myAccount-container:hover {
+    background-color: #333;
+    color: white;
+  }
+  
+  .nav__myAccount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+  }
+
+
   .identicon {
     margin-left: 0.5rem;
   }
