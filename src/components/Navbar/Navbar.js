@@ -62,7 +62,6 @@ const Navbar = () => {
         </select>
       </div>
 
-     
       <div className="nav__balance">
         {balance ? (
           <div className="nav__myBalance-container">
@@ -74,14 +73,14 @@ const Navbar = () => {
         ) : (
           <div className="nav__myBalance-container">
             <p>
-              <small>My Balance: </small>
+              <small> Balance: </small>
               0ETH
             </p>
           </div>
         )}
-{account ? (
+        {account ? (
           <div className="nav__myAccount-container">
-            <a className="nav__myAccount" href="#">
+            <button className="nav__myAccount" onClick={() => {}}>
               {account.slice(0, 5) + "...." + account.slice(38, 42)}
               <Blockies
                 seed={account}
@@ -92,7 +91,7 @@ const Navbar = () => {
                 spotColor="#767F92"
                 className="identicon"
               />
-            </a>
+            </button>
           </div>
         ) : (
           <button className="nav__balance-box" onClick={connectHandler}>
