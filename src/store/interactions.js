@@ -27,21 +27,29 @@ export const loadMedical = (provider, address, dispatch) => {
   return medical;
 };
 export const loadAllData = async (provider, medical, dispatch) => {
-  const block = await provider.getBlockNumber();
-  const medicalStream = await medical.queryFilter(
-    "MedicalRecords__AddRecord",
-    0,
-    block
-  );
-  const medicalRecords = medicalStream.map((event) => event.args);
-  dispatch({ type: "ALL_MEDICAL_RECORDS", medicalRecords });
-  const deleteStream = await medical.queryFilter(
-    "MedicalRecords__DeleteRecord",
-    0,
-    block
-  );
-  const deleteRecords = deleteStream.map((event) => event.args);
-  dispatch({ type: "ALL_DELETED_RECORDS", deleteRecords });
+  try {
+    const latestBlock = await provider.getBlockNumber();
+    const startBlock = latestBlock - 1000; // Adjust the range as needed
+
+    const medicalStream = await medical.queryFilter(
+      "MedicalRecords__AddRecord",
+      startBlock,
+      latestBlock
+    );
+    const medicalRecords = medicalStream.map((event) => event.args);
+    dispatch({ type: "ALL_MEDICAL_RECORDS", medicalRecords });
+
+    const deleteStream = await medical.queryFilter(
+      "MedicalRecords__DeleteRecord",
+      startBlock,
+      latestBlock
+    );
+    const deleteRecords = deleteStream.map((event) => event.args);
+    dispatch({ type: "ALL_DELETED_RECORDS", deleteRecords });
+  } catch (error) {
+    console.error("Error loading all data:", error);
+    // Handle error (e.g., display error message to the user)
+  }
 };
 
 export const submitRecord = async (

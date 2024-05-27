@@ -20,22 +20,37 @@ function App() {
   const dispatch = useDispatch();
 
   const loadBlockchainData = async () => {
-    const provider = loadProvider(dispatch);
-    const chainId = await loadNetwork(provider, dispatch);
-    const medical_config = config[chainId].medical;
-
-    window.ethereum.on("accountsChanged", () => {
-      loadAccount(provider, dispatch);
-    });
-
-    window.ethereum.on("chainChanged", () => {
-      window.location.reload();
-    });
-
-    const medical = loadMedical(provider, medical_config.address, dispatch);
-    loadAllData(provider, medical, dispatch);
-    subscribeToEvents(medical, dispatch);
+    try {
+      const provider = loadProvider(dispatch);
+      const chainId = await loadNetwork(provider, dispatch);
+      const medical_config = config[chainId]?.medical; // Using optional chaining
+      
+      if (!medical_config || !medical_config.address) {
+        throw new Error("Medical contract address is not found in the configuration");
+      }
+  
+      window.ethereum.on("accountsChanged", () => {
+        loadAccount(provider, dispatch);
+      });
+  
+      window.ethereum.on("chainChanged", () => {
+        window.location.reload();
+      });
+  
+      const medical = await loadMedical(provider, medical_config.address, dispatch); // Assuming loadMedical is async
+      if (!medical) {
+        throw new Error("Medical contract is undefined");
+      }
+  
+      loadAllData(provider, medical, dispatch);
+      subscribeToEvents(medical, dispatch);
+    } catch (error) {
+      console.error("Error loading blockchain data:", error);
+      // Handle error (e.g., display error message to the user)
+    }
   };
+  
+  
 
   useEffect(() => {
     loadBlockchainData();
