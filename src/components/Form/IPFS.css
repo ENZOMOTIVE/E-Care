@@ -9,10 +9,9 @@ body {
 
 .navbar {
     background-color: #333;
-    
-    padding: 3px 20px;
-    
-
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
 }
 
 .main-content {
@@ -45,6 +44,57 @@ body {
     background-color: #f9f9f9;
     border-left: 2px solid #333;
     margin-left: 20px;
+}
+
+.upload-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.upload-container input[type="file"] {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #333;
+    background-color: #f2f2f2;
+}
+
+.upload-container button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-container button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+.upload-container button:hover:not(:disabled) {
+    background-color: #3e8e41;
+}
+
+.upload-container .upload-result,
+.upload-container .upload-error {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+.upload-container .upload-result p {
+    color: #4CAF50;
+}
+
+.upload-container .upload-error p {
+    color: #f44336;
 }
 
 h1 {
@@ -83,7 +133,7 @@ select option {
 
 input[type="submit"] {
     padding: 10px 20px;
-    background-color: #3e8e41;
+    background-color: #4CAF50;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -96,7 +146,7 @@ input[type="submit"]:hover {
 }
 
 input[type="tel"]:invalid {
-    border-color: #333;
+    border-color: #4CAF50;
 }
 
 input[type="tel"]:valid {

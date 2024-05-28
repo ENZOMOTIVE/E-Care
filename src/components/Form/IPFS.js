@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './IPFS.css';
 
 // Declare API keys as constants
 const pinataApiKey = '4b4fd0895622960541a8';
