@@ -21,9 +21,10 @@ const Navbar = () => {
 
   return (
     <div className="Navbar">
+
       <div className="nav__name">
         
-        <h2>E-Care</h2>
+        <h2>MediCare- 2.O</h2>
       </div>
 
       {/* Option Links as Buttons */}
