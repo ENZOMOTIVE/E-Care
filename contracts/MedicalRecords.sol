@@ -5,6 +5,7 @@ contract MedicalRecords {
     uint public recordId;
     mapping(uint => Record) records;
     mapping(uint => bool) public isDeleted;
+
     struct Record {
         uint recordId;
         uint timestamp;
@@ -15,6 +16,7 @@ contract MedicalRecords {
         string allergies;
         string diagnosis;
         string treatment;
+        string photo; // for uploading the photo of disease
     }
 
     event MedicalRecords__AddRecord(
@@ -27,7 +29,11 @@ contract MedicalRecords {
         string allergies,
         string diagnosis,
         string treatment
+        string photo
     );
+
+
+
     event MedicalRecords__DeleteRecord(
         uint recordId,
         uint timestamp,
@@ -37,7 +43,8 @@ contract MedicalRecords {
         string bloodType,
         string allergies,
         string diagnosis,
-        string treatment
+        string treatment,
+        string photo
     );
 
     function addRecord(
@@ -47,7 +54,8 @@ contract MedicalRecords {
         string memory _bloodType,
         string memory _allergies,
         string memory _diagnosis,
-        string memory _treatment
+        string memory _treatment,
+        string memory _photo
     ) public {
         recordId++;
         records[recordId] = Record(
@@ -59,8 +67,10 @@ contract MedicalRecords {
             _bloodType,
             _allergies,
             _diagnosis,
-            _treatment
+            _treatment,
+            _photo
         );
+
         emit MedicalRecords__AddRecord(
             recordId,
             block.timestamp,
@@ -70,7 +80,8 @@ contract MedicalRecords {
             _bloodType,
             _allergies,
             _diagnosis,
-            _treatment
+            _treatment,
+            photo
         );
     }
 
@@ -86,7 +97,8 @@ contract MedicalRecords {
             record.bloodType,
             record.allergies,
             record.diagnosis,
-            record.treatment
+            record.treatment,
+            record.photo
         );
         isDeleted[_recordId] = true;
     }
@@ -97,9 +109,10 @@ contract MedicalRecords {
         public
         view
         returns (
-            uint,
+               uint,
             string memory,
             uint,
+            string memory,
             string memory,
             string memory,
             string memory,
@@ -116,7 +129,8 @@ contract MedicalRecords {
             record.bloodType,
             record.allergies,
             record.diagnosis,
-            record.treatment
+            record.treatment,
+            record.photo
         );
     }
 
