@@ -43,7 +43,7 @@ body {
     padding: 20px;
     background-color: #f9f9f9;
     border-left: 2px solid #333;
-    margin-left: 20px;
+    margin-left: 16px;
 }
 
 .upload-container h2 {
@@ -87,10 +87,14 @@ body {
     text-align: center;
     margin-top: 20px;
     color: #333;
+    word-break: break-all; /* Allows long words to break and wrap onto the next line */
+    overflow-wrap: break-word; /* Ensures content stays within the container */
 }
 
 .upload-container .upload-result p {
     color: #4CAF50;
+    word-break: break-all; /* Ensures the IPFS hash breaks and wraps onto the next line */
+    overflow-wrap: break-word;
 }
 
 .upload-container .upload-error p {

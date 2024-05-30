@@ -45,19 +45,18 @@ const PinataUpload = () => {
   };
 
   return (
-    <div>
+    <div className="upload-container">
       <h2>Upload to Pinata</h2>
       <input type="file" onChange={handleFileChange} />
       <button onClick={handleUpload} disabled={!selectedFile || uploading}>
         {uploading ? 'Uploading...' : 'Upload'}
       </button>
       {uploadResult && (
-        <div>
+        <div className="upload-result">
           <p>File uploaded successfully to Pinata. IPFS hash: {uploadResult.IpfsHash}</p>
-          {/* You can handle the uploaded file URL here */}
         </div>
       )}
-      {uploadError && <p>Error: {uploadError}</p>}
+      {uploadError && <div className="upload-error"><p>Error: {uploadError}</p></div>}
     </div>
   );
 };
